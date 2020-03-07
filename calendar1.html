@@ -1,0 +1,53 @@
+<?php
+  $year = 2020;
+  $month = 1;
+  $start_day_timestamp = mktime(0,0,0,$month,1,$year);
+  $end_day_timestamp = mktime(0,0,0,$month+1,0,$year);
+  $end_day = date("d", $end_day_timestamp);
+  $week_day = date("w", $start_day_timestamp);
+?>
+<!DOCTYPE HTML>
+<html>
+
+  <head>
+    <title>Calendar</title>
+    <meta charset = "utf-8">
+  </head>
+  <body>
+    <?php for($month=1; $month <= 12; $month ++):?>
+      <header><?php echo "{$month}月のカレンダー"; ?></header>
+
+      <table border="1">
+        <tr>
+            <th>SUN</th>
+            <th>MON</th>
+            <th>TUE</th>
+            <th>WED</th>
+            <th>THU</th>
+            <th>FRI</th>
+            <th>SAT</th>
+        </tr>
+       
+        <tr>
+            <?php
+        
+              for($i = 1; $i <= $end_day; $i ++){
+                if($i == 1){
+                  for($k = 0; $k < $week_day; $k ++){
+                    echo '<td></td>';
+                  }
+                }         
+                echo '<td>'.$i.'</td>';
+                $week_day++;
+                if($week_day == 7){
+                  echo '</tr><tr>';
+                  $week_day = 0;  
+                } 
+              }
+            ?>
+        </tr>
+    
+      </table>
+    <?php endfor ?>
+  </body>
+</html>

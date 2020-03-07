@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+       <meta charset="utf-8">
+       <title>カレンダーを作成する</title>
+       <style>
+
+       </style> 
+    </head>
+    <body>
+        <main>
+            <table>
+                <caption>３月</caption>
+                <thead>
+                    <tr>
+                        <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <?php
+                    //開始日を取得
+                      $start_day_timestamp = mktime(0,0,0,3,1,2020);
+                    //末尾を取得
+                      $end_day_timestamp = mktime(0,0,0,4,1,2020);
+                      $end_day = date("d",$end_day_timestamp);
+  
+                      for( $j = 1; $j <= $end_day; $j ++){
+                          if($j === 1){
+                            echo '<tr>';
+                            $weekday = date("w",$start_day_timestamp);
+                            for($k = 0; $k < $weekday; $k ++){
+                              echo '<td></td>'
+                            }              
+                          }   
+                       echo '<td>'.$j.'</td>';
+                       $weekday ++;
+
+                       if(6 < $weekday){
+                         echo '</tr><tr>';
+                         $weekday = 0;
+                       }
+                   }        
+                   ?>
+                </tbody>
+            </table>
+        </main>
+    </body>
+</html>
