@@ -39,7 +39,7 @@
     
     <body>
         <?php for ($month=1; $month <= 12; $month++): ?>
-            <h1><?= "{$month}"; ?>月のカレンダー</h1>
+            <h1><?= $month; ?>月のカレンダー</h1>
 
             <table border="1">
                 <tr>
@@ -55,15 +55,12 @@
                     <?php $calendar = getCalendar($month)?>
                 <tr>
                     <!-- make table of calendar -->
-                    <?php $cnt = 0; ?>
-                    <?php foreach ($calendar as $key => $value): ?>
-                        <?php $cnt++; ?>
-                        <td><?= $value; ?></td>
+                    <?php foreach ($calendar as $key => $value): ?>                   
                         <!-- make new line ever 7days-->
-                        <?php if ($cnt == 7): ?>
+                        <?php if ($key != 0 && $key % 7 == 0): ?>
                             </tr><tr>
-                            <?php $cnt = 0; ?>
                         <?php endif; ?>
+                        <td><?= $value; ?></td>
                     <?php endforeach; ?>
                 </tr>
             </table>
